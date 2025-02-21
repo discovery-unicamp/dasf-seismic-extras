@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "dasf-seismic-extras"
+version = "1.0.beta.5"
+description = "DASF module for Seismic Computation (extras)"
+authors = ["Julio Faracco <jcfaracco@gmail.com>"]
+maintainers = ["Julio Faracco <jcfaracco@gmail.com>"]
+license = "GPLv3"
+homepage = "https://github.com/lmcad-unicamp/dasf-seismic-extras"
+repository = "https://github.com/lmcad-unicamp/dasf-seismic-extras"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Beta",
+    "Environment :: GPU :: NVIDIA CUDA",
+]
+readme="README.md"
+exclude = ["tests/*", "docs/*"]
+packages = [
+    {include = "dasf_seismic_extras"}
+]
+
+[tool.poetry.dependencies]
+dasf-seismic = { git = "https://github.com/discovery-unicamp/dasf-seismic.git", branch = "main" }
+python = ">=3.10"
+segyio = "*"
+segysak = "*"
+
+[tool.poetry.dev-dependencies]
+flake8 = "*"
+mock = "*"
+parameterized = "*"
+paramiko = "*"
+pytest = "*"
+pytest-coverage = "*"
+pytest-benchmark = "*"
+wheel = "*"
+
+[tool.isort]
+profile = "black"
+
+[tool.coverage.paths]
+source = ["dasf_seismic_extras", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["dasf_seismic_extras"]
+
+[build-system]
+requires = ["poetry-core>=1.1.10"]
+build-backend = "poetry.core.masonry.api"

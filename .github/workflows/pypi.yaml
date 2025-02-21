@@ -1,0 +1,22 @@
+name: PyPi Automatic Upload
+
+on:
+  push:
+    branches:
+      - releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: pypi_upload
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate artifacts
+        run: |
+          # Install twine and poetry
+          pip install twine poetry
+          poetry config virtualenvs.create false
+          poetry build
+      - name: Upload artifacts
+        run: |
+          twine upload --repository ${{ vars.PYPI_REPOSITORY }} -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_TOKEN }} dist/*
